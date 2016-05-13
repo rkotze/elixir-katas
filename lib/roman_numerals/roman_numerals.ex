@@ -1,20 +1,20 @@
 defmodule RomanNumerals do
 
-  @numerals [{5,"V"}, {4, "IV"}, {1, "I"}]
+  @numerals [{10, "X"}, {9, "IX"}, {5,"V"}, {4, "IV"}, {1, "I"}]
 
   def convert(number) do
-    converts(number, @numerals)
+    convert(number, @numerals)
   end
 
-  def convert(number) when number < 1 do
+  def convert(number, _) when number < 1 do
     ""
   end
 
-  def convert(number, [{arabic, roman} |tail]) when number >= arabic do
+  def convert(number, [{arabic, roman} | tail]) when number >= arabic do
     roman <> convert(number - arabic, [{arabic, roman} | tail]);
   end
 
-  def convert(number, [head | tail]) do
-    converts(number, tail)
+  def convert(number, [_ | tail]) do
+    convert(number, tail)
   end
 end
